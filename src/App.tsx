@@ -1,7 +1,17 @@
 import logo from './logo.svg'
 import './App.css'
+import { axiosHandler } from './functions/axios'
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    const res = axiosHandler('pokemon/1', 'GET')
+    res.then(info => {
+      console.log(info)
+    })
+  },
+  [])
+
   return (
     <div className="App">
       <header className="App-header">
