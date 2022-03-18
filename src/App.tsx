@@ -10,7 +10,6 @@ const App = () => {
 
   const fetchDataFunc = async() => {
     setIsLoading(true)
-    console.log(fetchUrl)
     const endpoint = fetchUrl.split('v2/')[1]
     const [data, error] = await axiosHandler<any>(endpoint, 'GET')
     if (!error) {
