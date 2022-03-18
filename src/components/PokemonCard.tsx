@@ -21,7 +21,7 @@ const PokemonCard = ({ url }: props) => {
     }
 
     fetchData()
-  }, [])
+  }, [url])
 
   return (
     <div className='p-6 bg-white rounded shadow-lg hover:shadow-2xl hover:translate-x-1 hover:translate-y-1 cursor-pointer transition-hover'>
