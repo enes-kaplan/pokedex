@@ -32,7 +32,7 @@ const findTypeColor = (type: string) => {
   }
 }
 
-const capitalizeFirstLetterOfEveryWord = (str: string, localization = 'TR', lowerCaseAllFirst = false) => {
+const capitalizeFirstLetterOfEveryWord = (str: string, localization = 'EN', lowerCaseAllFirst = false) => {
   let result = str.split(' ')
   if (lowerCaseAllFirst) {
     result = str.toLocaleLowerCase(localization).split(' ')
