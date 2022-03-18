@@ -35,7 +35,7 @@ const App = () => {
     const shouldLoad = target.scrollHeight <= (target.scrollTop + target.clientHeight + scrollOffset)
 
     if (shouldLoad && isLoading === false) {
-      fetchData.current()
+      fetchDataFunc()
     }
   }
 
