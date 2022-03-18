@@ -27,7 +27,6 @@ const Home = () => {
   const scrollOffset = 150
   // This function will set the value of position when the page is scrolled
   const onScroll = (e: any) => {
-    console.log('Scrolling', e)
     const target = e.target as HTMLDivElement
     // If closer to the bottom than specified offset, we should load new data
     const shouldLoad = target.scrollHeight <= (target.scrollTop + target.clientHeight + scrollOffset)
