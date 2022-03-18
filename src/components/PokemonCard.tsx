@@ -30,7 +30,7 @@ const PokemonCard = ({ url }: props) => {
       {/* Used this tool to trim the empty spaces around: https://trimmy.io/ */}
       <img src={pokemon?.image ?? '/loader.gif'} alt={`Pokemon ${pokemon?.name}`} className="w-40 h-40" />
       <span className='text-3xl font-medium text-gray-600'>
-        {pokemon?.name ?? 'Loading...'}
+        #{pokemon?.no ?? '?'} - {pokemon?.name ?? 'Loading...'}
       </span>
     </div>
   )

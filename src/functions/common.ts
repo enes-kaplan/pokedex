@@ -6,6 +6,7 @@ export const parsePokemonList = (unparsedPokemonList: any[]): Pokemon[] => {
 
 export const parsePokemon = (unparsedPokemon: any): Pokemon => {
   const pokemon: Pokemon = {
+    no: unparsedPokemon.id,
     name: capitalizeFirstLetterOfEveryWord(unparsedPokemon.name),
     image: unparsedPokemon.sprites.other['official-artwork']['front_default'],
     description: 'NotFound',
