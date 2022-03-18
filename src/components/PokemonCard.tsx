@@ -28,7 +28,12 @@ const PokemonCard = ({ url }: props) => {
       {/* For pokedex loader, used this gif: https://dribbble.com/shots/14003796-Pok-dex-Pokemon-Pixel-Art */}
       {/* Used this tool to remove background: https://onlinegiftools.com/remove-gif-background */}
       {/* Used this tool to trim the empty spaces around: https://trimmy.io/ */}
-      <img src={pokemon?.image ?? '/loader.gif'} alt={`Pokemon ${pokemon?.name}`} className="w-40 h-40" />
+      <img
+        src={pokemon?.image ?? '/loader.gif'}
+        loading='lazy'
+        alt={`Pokemon ${pokemon?.name}`}
+        className="w-40 h-40"
+      />
       <div className='absolute top-2 right-2 text-lg font-medium leading-tight text-gray-600'>
         #{pokemon?.no ?? '?'}
       </div>
