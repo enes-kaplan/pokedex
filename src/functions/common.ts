@@ -14,26 +14,35 @@ export const parsePokemon = (unparsedPokemon: any): Pokemon => {
     weight: `${(unparsedPokemon.weight / 10).toFixed(1).toString()} kg`,
     habitat: 'Chill',
     baseStats: unparsedPokemon.stats.map((m: any) => { return { name: m.stat.name, value: m.base_stat } }),
-    types: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
-    strongAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
-    weakAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } })
+    types: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, background: findTypeBackground(m.type.name), color: findTypeColor(m.type.name) } }),
+    strongAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, background: findTypeBackground(m.type.name), color: findTypeColor(m.type.name) } }),
+    weakAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, background: findTypeBackground(m.type.name), color: findTypeColor(m.type.name) } })
     // TODO: Calculate strong/weak against
   }
 
   return pokemon
 }
 
-const findTypeColor = (type: string) => {
+const findTypeBackground = (type: string) => {
   // TODO: Calculate type colorings
   switch (type) {
   case 'psychic':
     return '#F00000'
   default:
-    return '#F0F000'
+    return '#A0A0A0'
+  }
+}
+const findTypeColor = (type: string) => {
+  // TODO: Calculate type colorings
+  switch (type) {
+  case 'psychic':
+    return '#000'
+  default:
+    return '#FFF'
   }
 }
 
-const capitalizeFirstLetterOfEveryWord = (str: string, localization = 'EN', lowerCaseAllFirst = false) => {
+export const capitalizeFirstLetterOfEveryWord = (str: string, localization = 'EN', lowerCaseAllFirst = false) => {
   let result = str.split(' ')
   if (lowerCaseAllFirst) {
     result = str.toLocaleLowerCase(localization).split(' ')

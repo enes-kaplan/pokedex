@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { axiosHandler } from '../functions/axios'
 import { parsePokemon } from '../functions/common'
+import PokemonDescription from '../components/detail/PokemonDescription'
 
 const PokemonDetail = () => {
   const routeParams = useParams()
@@ -28,7 +29,7 @@ const PokemonDetail = () => {
       </div>
       <div className='grid grid-cols-1 mt-4 sm:grid-cols-3'>
         <img src={pokemon?.image} alt={`Pokemon ${pokemon?.name}`} className='col-span-1 w-60 h-60' />
-        <div className='col-span-2 h-10 bg-red-100'></div>
+        <PokemonDescription pokemon={pokemon} />
       </div>
     </div>
   )

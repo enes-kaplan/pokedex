@@ -20,4 +20,5 @@ export interface PokemonStat {
 export interface PokemonType {
   name: string
   color: string
+  background: string
 }
