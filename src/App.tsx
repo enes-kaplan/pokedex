@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Header from './layout/Header'
 import Home from './pages/Home'
+import PokemonDetail from './pages/PokemonDetail'
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
       <div className='overflow-hidden mt-16 h-content'>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/pokemon/:no" element={<PokemonDetail />} />
           {/* <Route path="about" element={<About />} /> */}
         </Routes>
       </div>

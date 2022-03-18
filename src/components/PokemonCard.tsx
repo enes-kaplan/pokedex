@@ -2,6 +2,7 @@ import type { Pokemon } from '../functions/types'
 import { useState, useEffect } from 'react'
 import { axiosHandler } from '../functions/axios'
 import { parsePokemon } from '../functions/common'
+import { Link } from 'react-router-dom'
 import FlipCard from './FlipCard'
 
 interface props {
@@ -45,12 +46,12 @@ const PokemonCard = ({ url }: props) => {
   )
 
   const cardBack = (
-    <div className='bg-red-200 flip-card-back'>
+    <Link to={`/pokemon/${pokemon?.no}`} className='bg-red-200 flip-card-back'>
       <img src='/pokedex.png' alt='Pokedex for details' className='' />
       <span className='text-2xl font-bold text-gray-600'>
         Go to details
       </span>
-    </div>
+    </Link>
   )
 
   return (
