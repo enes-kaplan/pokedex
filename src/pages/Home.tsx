@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { axiosHandler } from '../functions/axios'
-import PokemonList from '../components/PokemonList'
+import PokemonCard from '../components/PokemonCard'
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true)
@@ -39,7 +39,9 @@ const Home = () => {
 
   return (
     <div onScroll={onScroll} className='overflow-y-auto h-full'>
-      <PokemonList pokemonUrlList={pokemonUrlList} />
+      <div className='flex flex-wrap gap-8 justify-center px-8 mx-auto mt-8 max-w-7xl'>
+        {pokemonUrlList.map((url, i) => <PokemonCard url={url} key={i} />)}
+      </div>
     </div>
   )
 }
