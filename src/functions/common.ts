@@ -24,6 +24,7 @@ export const parsePokemon = (unparsedPokemon: any): Pokemon => {
 }
 
 const findTypeColor = (type: string) => {
+  // TODO: Calculate type colorings
   switch (type) {
   case 'psychic':
     return '#F00000'

@@ -1,6 +1,13 @@
 @tailwind base;
 @tailwind components;
 
+body {
+	@apply bg-slate-100;
+}
+.h-content {
+	height: calc(100vh - 4rem);
+}
+
 .transition-default {
 	@apply transition-all duration-300 ease-out;
 }
