@@ -24,8 +24,8 @@ const PokemonCard = ({ url }: props) => {
   }, [])
 
   return (
-    <div className='p-6 bg-white rounded shadow-lg'>
-      <img src={pokemon?.image} alt={`Pokemon image for ${pokemon?.name}`} className="w-40 h-40" />
+    <div className='p-6 bg-white rounded shadow-lg hover:shadow-2xl hover:translate-x-1 hover:translate-y-1 cursor-pointer transition-hover'>
+      <img src={pokemon?.image} alt={`Pokemon ${pokemon?.name}`} className="w-40 h-40" />
     </div>
   )
 }
