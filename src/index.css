@@ -7,6 +7,9 @@ body {
 .h-content {
 	height: calc(100vh - 4rem);
 }
+.text-shadow-type {
+	text-shadow: 2px 2px #807870;
+}
 
 .transition-default {
 	@apply transition-all duration-300 ease-out;

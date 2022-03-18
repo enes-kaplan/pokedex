@@ -12,8 +12,8 @@ const PokemonDescription = ({ pokemon }: props) => {
         <div className='text-3xl font-medium text-gray-600'>Type</div>
         {pokemon?.types.map(type =>
           <div
-            className='py-1 px-2 font-bold text-center rounded'
-            style={{ color: type.color, backgroundColor: type.background }}
+            className='py-1 px-2 font-bold text-center text-white rounded text-shadow-type'
+            style={{ backgroundColor: type.color }}
           >
             {capitalizeFirstLetterOfEveryWord(type.name)}
           </div>)}

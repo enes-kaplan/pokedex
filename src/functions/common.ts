@@ -14,31 +14,57 @@ export const parsePokemon = (unparsedPokemon: any): Pokemon => {
     weight: `${(unparsedPokemon.weight / 10).toFixed(1).toString()} kg`,
     habitat: 'Chill',
     baseStats: unparsedPokemon.stats.map((m: any) => { return { name: m.stat.name, value: m.base_stat } }),
-    types: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, background: findTypeBackground(m.type.name), color: findTypeColor(m.type.name) } }),
-    strongAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, background: findTypeBackground(m.type.name), color: findTypeColor(m.type.name) } }),
-    weakAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, background: findTypeBackground(m.type.name), color: findTypeColor(m.type.name) } })
+    types: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
+    strongAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
+    weakAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } })
     // TODO: Calculate strong/weak against
   }
 
   return pokemon
 }
 
-const findTypeBackground = (type: string) => {
-  // TODO: Calculate type colorings
-  switch (type) {
-  case 'psychic':
-    return '#F00000'
-  default:
-    return '#A0A0A0'
-  }
-}
 const findTypeColor = (type: string) => {
-  // TODO: Calculate type colorings
   switch (type) {
+  case 'bug':
+    return '#A8B82F'
+  case 'dark':
+    return '#6F5849'
+  case 'dragon':
+    return '#7235F5'
+  case 'electric':
+    return '#F5D040'
+  case 'fairy':
+    return '#807870'
+  case 'fire':
+    return '#EC4D37'
+  case 'flying':
+    return '#A98FEE'
+  case 'ghost':
+    return '#705897'
+  case 'grass':
+    return '#7BC956'
+  case 'ground':
+    return '#DEC06D'
+  case 'ice':
+    return '#9CD8D8'
+  case 'normal':
+    return '#A7A87A'
+  case 'poison':
+    return '#9E3E9F'
   case 'psychic':
-    return '#000'
+    return '#F45589'
+  case 'rock':
+    return '#B6A040'
+  case 'shadow':
+    return '#403246'
+  case 'steel':
+    return '#B8B8CF'
+  case 'water':
+    return '#6D90EE'
+  case 'unknown':
+    return '#7BC956'
   default:
-    return '#FFF'
+    return '#6BA090'
   }
 }
 
