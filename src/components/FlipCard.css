@@ -17,13 +17,14 @@
   backface-visibility: hidden;
 }
 
-/* Style the front side (fallback if image is missing) */
+/* Style the front side */
 .flip-card-front {
-	/* @apply bg-white shadow-lg; */
+	@apply rounded cursor-pointer;
 }
 
 /* Style the back side */
 .flip-card-back {
+	@apply rounded cursor-pointer;
   transform: rotateY(-180deg);
 }
 
