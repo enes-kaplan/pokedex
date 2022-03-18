@@ -3,7 +3,7 @@ import PokemonList from './components/PokemonList'
 
 const App = () => {
   return (
-    <div className="overflow-y-auto w-screen h-screen bg-slate-100">
+    <div className="overflow-y-auto pb-8 w-screen h-screen bg-slate-100">
       <Header />
       <PokemonList />
     </div>

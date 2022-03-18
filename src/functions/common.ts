@@ -6,7 +6,7 @@ export const parsePokemonList = (unparsedPokemonList: any[]): Pokemon[] => {
 
 export const parsePokemon = (unparsedPokemon: any): Pokemon => {
   const pokemon: Pokemon = {
-    name: unparsedPokemon.name,
+    name: capitalizeFirstLetterOfEveryWord(unparsedPokemon.name),
     image: unparsedPokemon.sprites.other['official-artwork']['front_default'],
     description: 'NotFound',
     height: `${(unparsedPokemon.height / 10).toFixed(1).toString()} m`,
@@ -29,4 +29,17 @@ const findTypeColor = (type: string) => {
   default:
     return '#F0F000'
   }
+}
+
+const capitalizeFirstLetterOfEveryWord = (str: string, localization = 'TR', lowerCaseAllFirst = false) => {
+  let result = str.split(' ')
+  if (lowerCaseAllFirst) {
+    result = str.toLocaleLowerCase(localization).split(' ')
+  }
+
+  for (let i = 0; i < result.length; ++i) {
+    result[i] = result[i].charAt(0).toLocaleUpperCase(localization) + result[i].slice(1)
+  }
+
+  return result.join(' ')
 }
