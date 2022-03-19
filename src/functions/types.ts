@@ -10,8 +10,6 @@ export interface Pokemon {
   abilities: string[]
   baseStats: PokemonStat[]
   types: PokemonType[]
-  strongAgainst: PokemonType[]
-  weakAgainst: PokemonType[]
 }
 
 export interface PokemonStat {
@@ -22,4 +20,11 @@ export interface PokemonStat {
 export interface PokemonType {
   name: string
   color: string
+  multiplier?: number
+}
+
+export interface TypeRelation {
+  name: string
+  color: string
+  multiplier: number
 }

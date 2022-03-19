@@ -1,4 +1,5 @@
-import { Pokemon } from './types'
+import { axiosHandler } from './axios'
+import { Pokemon, TypeRelation } from './types'
 
 export const parsePokemonList = (unparsedPokemonList: any[]): Pokemon[] => {
   return unparsedPokemonList.map(m => parsePokemon(m))
@@ -14,9 +15,6 @@ export const parsePokemon = (unparsedPokemon: any, unparsedSpecies?: any): Pokem
     abilities: unparsedPokemon.abilities.map((m: any) => capitalizeFirstLetterOfEveryWord(m.ability.name)),
     baseStats: unparsedPokemon.stats.map((m: any) => { return { name: m.stat.name, value: m.base_stat } }),
     types: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
-    // TODO: Calculate strong/weak against
-    strongAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
-    weakAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
     genderRate: 0,
     description: '',
     habitat: ''
@@ -75,6 +73,55 @@ const findTypeColor = (type: string) => {
   default:
     return '#6BA090'
   }
+}
+
+export const getTypeRelations = async(unparsedPokemon: any) => {
+  const typeRelations: TypeRelation[] = []
+
+  for (let i = 0; i < unparsedPokemon.types.length; i++) {
+    const type = unparsedPokemon.types[i]
+    const [typeDetails, error] = await axiosHandler<any>(`type/${type.type.name}`, 'GET')
+    if (typeDetails) {
+      // Defense
+      const doubleFrom: string[] = typeDetails['damage_relations']['double_damage_from'].map((type: any) => type.name)
+      const halfFrom: string[] = typeDetails['damage_relations']['half_damage_from'].map((type: any) => type.name)
+      const zeroFrom: string[] = typeDetails['damage_relations']['no_damage_from'].map((type: any) => type.name)
+
+      doubleFrom.forEach(rel => {
+        const existingRel = typeRelations.find(f => f.name === rel)
+        // If this relation already exists, multiplier * 2. Otherwise, multiplier equals to 2.
+        if (existingRel) {
+          existingRel.multiplier = existingRel.multiplier * 2
+        } else {
+          typeRelations.push({ name: rel, color: findTypeColor(rel), multiplier: 2 })
+        }
+      })
+      halfFrom.forEach(rel => {
+        const existingRel = typeRelations.find(f => f.name === rel)
+        if (existingRel) {
+          existingRel.multiplier = existingRel.multiplier * 0.5
+        } else {
+          typeRelations.push({ name: rel, color: findTypeColor(rel), multiplier: 0.5 })
+        }
+      })
+      zeroFrom.forEach(rel => {
+        const existingRel = typeRelations.find(f => f.name === rel)
+        // Set the multiplier to zero for all cases
+        if (existingRel) {
+          existingRel.multiplier = 0
+        } else {
+          typeRelations.push({ name: rel, color: findTypeColor(rel), multiplier: 0 })
+        }
+      })
+    }
+  }
+
+  // Attacks that the Pokemon takes less damage from
+  const strongAgainst = typeRelations.filter(f => f.multiplier < 1)
+  // Attacks that the Pokemon takes more damage from
+  const weakAgainst = typeRelations.filter(f => f.multiplier > 1)
+
+  return [strongAgainst, weakAgainst]
 }
 
 export const capitalizeFirstLetterOfEveryWord = (str: string, localization = 'EN', lowerCaseAllFirst = false) => {

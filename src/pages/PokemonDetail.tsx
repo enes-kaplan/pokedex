@@ -1,21 +1,27 @@
-import type { Pokemon } from '../functions/types'
+import type { Pokemon, TypeRelation } from '../functions/types'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { axiosHandler } from '../functions/axios'
-import { parsePokemon } from '../functions/common'
+import { parsePokemon, getTypeRelations } from '../functions/common'
 import PokemonDescription from '../components/detail/PokemonDescription'
 
 const PokemonDetail = () => {
   const routeParams = useParams()
   const [pokemon, setPokemon] = useState<Pokemon>()
+  const [strength, setStrengths] = useState<TypeRelation[]>()
+  const [weakness, setWeakness] = useState<TypeRelation[]>()
 
   useEffect(() => {
     const fetchData = async() => {
       const [data, error] = await axiosHandler<any>(`pokemon/${routeParams.no}`, 'GET')
-      const [speciesData, speciesError] = await axiosHandler<any>(`pokemon-species/${routeParams.no}`, 'GET')
+      const [speciesData] = await axiosHandler<any>(`pokemon-species/${routeParams.no}`, 'GET')
+      const [strengthData, weaknessData] = await getTypeRelations(data)
+
       if (!error) {
         const parsedPokemon = parsePokemon(data, speciesData)
         setPokemon(parsedPokemon)
+        setStrengths(strengthData)
+        setWeakness(weaknessData)
       }
     }
 
@@ -30,7 +36,7 @@ const PokemonDetail = () => {
       </div>
       <div className='grid grid-cols-1 mt-4 sm:grid-cols-3'>
         <img src={pokemon?.image} alt={`Pokemon ${pokemon?.name}`} className='col-span-1 w-60 h-60' />
-        <PokemonDescription pokemon={pokemon} />
+        <PokemonDescription pokemon={pokemon} strength={strength} weakness={weakness} />
       </div>
     </div>
   )
