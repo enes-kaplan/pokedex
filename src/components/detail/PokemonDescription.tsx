@@ -9,7 +9,7 @@ const PokemonDescription = ({ pokemon }: props) => {
   return (
     <div className='col-span-2'>
       <div className='flex gap-4 items-baseline'>
-        <div className='text-3xl font-medium text-gray-600'>Type</div>
+        <h2>Type</h2>
         {pokemon?.types.map(type =>
           <div
             className='py-1 px-2 font-bold text-center text-white rounded text-shadow-type'

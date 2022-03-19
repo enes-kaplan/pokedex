@@ -4,6 +4,13 @@
 body {
 	@apply bg-slate-100;
 }
+h1 {
+	@apply text-5xl font-medium text-gray-600;
+}
+h2 {
+	@apply text-3xl font-medium text-gray-600;
+}
+
 .h-content {
 	height: calc(100vh - 4rem);
 }

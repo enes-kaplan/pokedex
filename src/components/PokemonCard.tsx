@@ -39,9 +39,9 @@ const PokemonCard = ({ url }: props) => {
       <div className='absolute top-2 right-2 text-lg font-medium leading-tight text-gray-600'>
         #{pokemon?.no ?? '?'}
       </div>
-      <div className='text-3xl font-medium text-gray-600'>
+      <h2>
         {pokemon?.name ?? 'Loading...'}
-      </div>
+      </h2>
     </div>
   )
 
