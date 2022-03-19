@@ -10,9 +10,10 @@ const PokemonDescription = ({ pokemon }: props) => {
     <div className='col-span-2'>
       <div className='flex gap-4 items-baseline'>
         <h2>Type</h2>
-        {pokemon?.types.map(type =>
+        {pokemon?.types.map((type, i) =>
           <div
-            className='py-1 px-2 font-bold text-center text-white rounded text-shadow-type'
+            key={i}
+            className='py-1 px-2 font-bold text-center text-white rounded select-none text-shadow-type'
             style={{ backgroundColor: type.color }}
           >
             {capitalizeFirstLetterOfEveryWord(type.name)}
