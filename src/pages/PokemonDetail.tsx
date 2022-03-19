@@ -29,7 +29,7 @@ const PokemonDetail = () => {
   }, [routeParams])
 
   return (
-    <div className=' px-8 mx-auto mt-8 max-w-7xl'>
+    <div className='overflow-y-auto px-8 pb-16 mx-auto mt-8 max-w-7xl h-full'>
       <div className='flex flex-col w-full sm:flex-row sm:justify-between sm:items-baseline'>
         <h1>{pokemon?.name}</h1>
         <h2>#{pokemon?.no}</h2>
