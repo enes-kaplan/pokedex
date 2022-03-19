@@ -11,6 +11,7 @@ export const parsePokemon = (unparsedPokemon: any, unparsedSpecies?: any): Pokem
     image: unparsedPokemon.sprites.other['official-artwork']['front_default'],
     height: `${(unparsedPokemon.height / 10).toFixed(1).toString()} m`,
     weight: `${(unparsedPokemon.weight / 10).toFixed(1).toString()} kg`,
+    abilities: unparsedPokemon.abilities.map((m: any) => capitalizeFirstLetterOfEveryWord(m.ability.name)),
     baseStats: unparsedPokemon.stats.map((m: any) => { return { name: m.stat.name, value: m.base_stat } }),
     types: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
     // TODO: Calculate strong/weak against

@@ -7,6 +7,7 @@ export interface Pokemon {
   weight: string
   habitat: string
   genderRate: number
+  abilities: string[]
   baseStats: PokemonStat[]
   types: PokemonType[]
   strongAgainst: PokemonType[]
