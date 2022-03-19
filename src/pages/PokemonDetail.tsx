@@ -12,8 +12,9 @@ const PokemonDetail = () => {
   useEffect(() => {
     const fetchData = async() => {
       const [data, error] = await axiosHandler<any>(`pokemon/${routeParams.no}`, 'GET')
+      const [speciesData, speciesError] = await axiosHandler<any>(`pokemon-species/${routeParams.no}`, 'GET')
       if (!error) {
-        const parsedPokemon = parsePokemon(data)
+        const parsedPokemon = parsePokemon(data, speciesData)
         setPokemon(parsedPokemon)
       }
     }

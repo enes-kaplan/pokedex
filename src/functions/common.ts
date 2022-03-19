@@ -4,20 +4,28 @@ export const parsePokemonList = (unparsedPokemonList: any[]): Pokemon[] => {
   return unparsedPokemonList.map(m => parsePokemon(m))
 }
 
-export const parsePokemon = (unparsedPokemon: any): Pokemon => {
+export const parsePokemon = (unparsedPokemon: any, unparsedSpecies?: any): Pokemon => {
   const pokemon: Pokemon = {
     no: unparsedPokemon.id,
     name: capitalizeFirstLetterOfEveryWord(unparsedPokemon.name),
     image: unparsedPokemon.sprites.other['official-artwork']['front_default'],
-    description: 'NotFound',
     height: `${(unparsedPokemon.height / 10).toFixed(1).toString()} m`,
     weight: `${(unparsedPokemon.weight / 10).toFixed(1).toString()} kg`,
-    habitat: 'Chill',
     baseStats: unparsedPokemon.stats.map((m: any) => { return { name: m.stat.name, value: m.base_stat } }),
     types: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
-    strongAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
-    weakAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } })
     // TODO: Calculate strong/weak against
+    strongAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
+    weakAgainst: unparsedPokemon.types.map((m: any) => { return { name: m.type.name, color: findTypeColor(m.type.name) } }),
+    genderRate: 0,
+    description: '',
+    habitat: ''
+  }
+
+  if (unparsedSpecies) {
+    const descObj = unparsedSpecies['flavor_text_entries'].find((f: any) => f.language.name === 'en' && f.version.name === 'shield')
+    pokemon.description = descObj?.flavor_text
+    pokemon.habitat = capitalizeFirstLetterOfEveryWord(unparsedSpecies.habitat.name)
+    pokemon.genderRate = unparsedSpecies['gender_rate']
   }
 
   return pokemon
