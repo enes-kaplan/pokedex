@@ -19,6 +19,10 @@ const PokemonDescription = ({ pokemon }: props) => {
             {capitalizeFirstLetterOfEveryWord(type.name)}
           </div>)}
       </div>
+      <div className='mt-4'>
+        <h2>Description</h2>
+        <p>{pokemon?.description}</p>
+      </div>
     </div>
   )
 }
