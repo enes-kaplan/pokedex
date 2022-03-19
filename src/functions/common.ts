@@ -80,7 +80,7 @@ export const getTypeRelations = async(unparsedPokemon: any) => {
 
   for (let i = 0; i < unparsedPokemon.types.length; i++) {
     const type = unparsedPokemon.types[i]
-    const [typeDetails, error] = await axiosHandler<any>(`type/${type.type.name}`, 'GET')
+    const [typeDetails] = await axiosHandler<any>(`type/${type.type.name}`, 'GET')
     if (typeDetails) {
       // Defense
       const doubleFrom: string[] = typeDetails['damage_relations']['double_damage_from'].map((type: any) => type.name)
