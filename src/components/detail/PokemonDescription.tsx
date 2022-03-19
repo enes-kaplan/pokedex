@@ -9,7 +9,7 @@ const PokemonDescription = ({ pokemon }: props) => {
   return (
     <div className='col-span-2'>
       <div className='flex gap-4 items-baseline'>
-        <h2>Type</h2>
+        <h3>Type</h3>
         {pokemon?.types.map((type, iType) =>
           <div
             key={iType}
@@ -20,16 +20,30 @@ const PokemonDescription = ({ pokemon }: props) => {
           </div>)}
       </div>
       <div className='mt-4'>
-        <h2>Description</h2>
+        <h3>Description</h3>
         <p>{pokemon?.description}</p>
       </div>
-      <div className='flex flex-col gap-2 mt-4'>
-        <h2>Abilities</h2>
-        {pokemon?.abilities.map((ability, iAbility) =>
-          <div key={iAbility}>
-            {ability}
+      <div className='flex w-full'>
+        <div className='flex flex-col grow gap-2 mt-4'>
+          <h3>Abilities</h3>
+          {pokemon?.abilities.map((ability, iAbility) =>
+            <div key={iAbility}>
+              {ability}
+            </div>
+          )}
+        </div>
+        <div className='flex flex-col grow gap-2 mt-4'>
+          <h3>Height</h3>
+          <div>
+            {pokemon?.height}
           </div>
-        )}
+        </div>
+        <div className='flex flex-col grow gap-2 mt-4'>
+          <h3>Weight</h3>
+          <div>
+            {pokemon?.weight}
+          </div>
+        </div>
       </div>
     </div>
   )
