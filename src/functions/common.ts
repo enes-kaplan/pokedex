@@ -23,7 +23,9 @@ export const parsePokemon = (unparsedPokemon: any, unparsedSpecies?: any): Pokem
   if (unparsedSpecies) {
     const descObj = unparsedSpecies['flavor_text_entries'].find((f: any) => f.language.name === 'en' && f.version.name === 'shield')
     pokemon.description = descObj?.flavor_text
-    pokemon.habitat = capitalizeFirstLetterOfEveryWord(unparsedSpecies.habitat.name)
+    pokemon.habitat = unparsedSpecies?.habitat?.name
+      ? capitalizeFirstLetterOfEveryWord(unparsedSpecies.habitat.name)
+      : ''
     pokemon.genderRate = unparsedSpecies['gender_rate']
   }
 
