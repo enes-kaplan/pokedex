@@ -1,5 +1,5 @@
 import type { Pokemon } from '../functions/types'
-import { useState, useRef, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { axiosHandler } from '../functions/axios'
 import { parsePokemon } from '../functions/common'
 
@@ -13,7 +13,6 @@ const PokemonGuess = () => {
   const [error, setError] = useState(false)
 
   const getRandomPokeNoFunc = () => Math.floor(Math.random() * max)
-  const getRandomPokeNo = useRef(getRandomPokeNoFunc)
 
   const fetchDataFunc = async() => {
     const pokeNo = getRandomPokeNoFunc()
@@ -24,10 +23,18 @@ const PokemonGuess = () => {
       setPokemon(parsedPokemon)
     }
   }
-  const fetchData = useRef(fetchDataFunc)
 
   useEffect(() => {
-    fetchDataFunc()
+    const initialFetch = async() => {
+      const pokeNo = Math.floor(Math.random() * 898)
+      const [data, error] = await axiosHandler<any>(`pokemon/${pokeNo}`, 'GET')
+      if (!error) {
+        const parsedPokemon = parsePokemon(data)
+        setShowResults(false)
+        setPokemon(parsedPokemon)
+      }
+    }
+    initialFetch()
   }, [])
 
   const reroll = () => { fetchDataFunc() }
