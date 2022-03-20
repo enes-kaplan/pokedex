@@ -70,7 +70,7 @@ const PokemonGuess = () => {
     <div className='flex flex-col gap-8 justify-center px-8 mx-auto mt-8 max-w-7xl'>
       <div className='flex gap-8 justify-center px-8 mx-auto'>
         <div className='flex flex-col gap-4 items-center'>
-          <img src={pokemon?.image} alt={'Who\'s this pokemon?'} className={`w-60 h-60 ${!showResults && 'hidden-pokemon'}`} />
+          <img src={pokemon?.image} alt={'Who\'s this pokemon?'} className={`w-60 h-60 transition-default ${!showResults && 'hidden-pokemon'}`} />
           {showResults && <h2 className={correctGuess ? 'text-emerald-600' : 'text-red-600'}>{pokemon?.name}</h2>}
           {!showResults && <h2>&nbsp;</h2>}
         </div>
