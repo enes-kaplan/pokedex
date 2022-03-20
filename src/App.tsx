@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Header from './layout/Header'
 import Home from './pages/Home'
 import PokemonDetail from './pages/PokemonDetail'
+import PokemonGuess from './pages/PokemonGuess'
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/pokemon/:no" element={<PokemonDetail />} />
+          <Route path="/whosthatpokemon" element={<PokemonGuess />} />
           {/* <Route path="about" element={<About />} /> */}
         </Routes>
       </div>
