@@ -20,6 +20,9 @@ h3 {
 .text-shadow-type {
 	text-shadow: 2px 2px #807870;
 }
+.hidden-pokemon {
+	filter: brightness(0%);
+}
 
 .transition-default {
 	@apply transition-all duration-300 ease-out;
