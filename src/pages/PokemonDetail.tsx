@@ -23,7 +23,9 @@ const PokemonDetail = () => {
       const [speciesData] = await axiosHandler<any>(`pokemon-species/${routeParams.no}`, 'GET')
       const [strengthData, weaknessData] = await getTypeRelations(data)
 
-      setLoading(false)
+      setTimeout(() => {
+        setLoading(false)
+      }, 250)
 
       if (!error) {
         const parsedPokemon = parsePokemon(data, speciesData)
