@@ -1,0 +1,13 @@
+.animate-skeleton {
+	animation: skeleton-animation 2.5s infinite ease-in-out;
+}
+
+@keyframes skeleton-animation {
+  0%, 100% {
+    background-color: #CCC;
+	}
+  
+  50% {
+    background-color: #DDD;
+	}
+}
