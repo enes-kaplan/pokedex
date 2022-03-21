@@ -82,12 +82,12 @@ const PokemonGuess = () => {
     <div className='flex overflow-y-auto flex-col gap-4 px-8 pb-16 mx-auto mt-8 max-w-7xl sm:pb-0 h-content'>
       <div className='flex flex-col gap-2 justify-center px-8 mx-auto sm:flex-row sm:gap-8'>
         <div className='flex flex-col items-center'>
-          {loading && <img src='/loader.gif' alt='Loader' className='w-60 h-60' />}
+          {loading && <img src='/loader.gif' alt='Loader' className='w-40 h-40 sm:w-60 sm:h-60' />}
           {pokemon && !loading
             && <img
               src={pokemon?.image}
               alt={'Who\'s this pokemon?'}
-              className={`sm:w-60 w-40 sm:h-60 h-40 pointer-events-none select-none transition-default ${!showResults && 'hidden-pokemon'}`}
+              className={`w-40 h-40 sm:w-60 sm:h-60 pointer-events-none select-none transition-default ${!showResults && 'hidden-pokemon'}`}
             />
           }
           {!loading && showResults
