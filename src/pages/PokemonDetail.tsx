@@ -55,26 +55,32 @@ const PokemonDetail = () => {
             ? <LoaderLine width='250px' height='48px' />
             : <h1>{pokemon?.name}</h1>
           }
-          {loading
-            ? <LoaderLine width='80px' height='36px' />
-            : <h2>#{routeParams.no}</h2>
-          }
-        </div>
-        <div className='flex grow gap-4 justify-center items-center w-1/2 sm:hidden'>
-          <button
-            className='flex justify-center items-center w-12 h-12 text-3xl font-extrabold bg-gray-300 rounded opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed'
-            disabled={routeParams.no === '1'}
-            onClick={() => { navigate(`/pokemon/${parseInt(routeParams.no!) - 1}`, { replace: true }) }}
-          >
-            {'<'}
-          </button>
-          <button
-            className='flex justify-center items-center w-12 h-12 text-3xl font-extrabold bg-gray-300 rounded opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed'
-            disabled={routeParams.no === '898'}
-            onClick={() => { navigate(`/pokemon/${parseInt(routeParams.no!) + 1}`, { replace: true }) }}
-          >
-            {'>'}
-          </button>
+          <span className='hidden sm:inline'>
+            {loading
+              ? <LoaderLine width='80px' height='36px' />
+              : <h2>#{routeParams.no}</h2>
+            }
+          </span>
+          <div className='flex gap-4 items-center mt-1 sm:hidden'>
+            <button
+              className='flex justify-center items-center w-12 h-12 text-3xl font-extrabold bg-gray-300 rounded opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed'
+              disabled={routeParams.no === '1'}
+              onClick={() => { navigate(`/pokemon/${parseInt(routeParams.no!) - 1}`, { replace: true }) }}
+            >
+              {'<'}
+            </button>
+            <button
+              className='flex justify-center items-center w-12 h-12 text-3xl font-extrabold bg-gray-300 rounded opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed'
+              disabled={routeParams.no === '898'}
+              onClick={() => { navigate(`/pokemon/${parseInt(routeParams.no!) + 1}`, { replace: true }) }}
+            >
+              {'>'}
+            </button>
+            {loading
+              ? <LoaderLine width='80px' height='36px' />
+              : <h2>#{routeParams.no}</h2>
+            }
+          </div>
         </div>
       </div>
       <div className='grid grid-cols-1 mt-4 sm:grid-cols-3'>
