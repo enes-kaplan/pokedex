@@ -49,15 +49,33 @@ const PokemonDetail = () => {
 
   return (
     <div className='overflow-y-auto relative px-8 pb-16 mx-auto mt-8 max-w-7xl h-full hiddenScrollbar'>
-      <div className='flex flex-col w-full sm:flex-row sm:justify-between sm:items-baseline'>
-        {loading
-          ? <LoaderLine width='250px' height='48px' />
-          : <h1>{pokemon?.name}</h1>
-        }
-        {loading
-          ? <LoaderLine width='80px' height='36px' />
-          : <h2>#{routeParams.no}</h2>
-        }
+      <div className='flex justify-between'>
+        <div className='flex flex-col grow w-1/2 sm:flex-row sm:justify-between sm:items-baseline sm:w-full'>
+          {loading
+            ? <LoaderLine width='250px' height='48px' />
+            : <h1>{pokemon?.name}</h1>
+          }
+          {loading
+            ? <LoaderLine width='80px' height='36px' />
+            : <h2>#{routeParams.no}</h2>
+          }
+        </div>
+        <div className='flex grow gap-4 justify-center items-center w-1/2 sm:hidden'>
+          <button
+            className='flex justify-center items-center w-12 h-12 text-3xl font-extrabold bg-gray-300 rounded opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed'
+            disabled={routeParams.no === '1'}
+            onClick={() => { navigate(`/pokemon/${parseInt(routeParams.no!) - 1}`, { replace: true }) }}
+          >
+            {'<'}
+          </button>
+          <button
+            className='flex justify-center items-center w-12 h-12 text-3xl font-extrabold bg-gray-300 rounded opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed'
+            disabled={routeParams.no === '898'}
+            onClick={() => { navigate(`/pokemon/${parseInt(routeParams.no!) + 1}`, { replace: true }) }}
+          >
+            {'>'}
+          </button>
+        </div>
       </div>
       <div className='grid grid-cols-1 mt-4 sm:grid-cols-3'>
         {loading
@@ -73,14 +91,14 @@ const PokemonDetail = () => {
         />
       </div>
       <button
-        className='flex fixed top-16 bottom-0 left-0 justify-center items-center w-16 text-7xl font-extrabold bg-gray-300 opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed transition-hover h-content'
+        className='hidden fixed top-16 bottom-0 left-0 justify-center items-center w-16 text-7xl font-extrabold bg-gray-300 opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed sm:flex transition-hover h-content'
         disabled={routeParams.no === '1'}
         onClick={() => { navigate(`/pokemon/${parseInt(routeParams.no!) - 1}`, { replace: true }) }}
       >
         {'<'}
       </button>
       <button
-        className='flex fixed top-16 right-0 bottom-0 justify-center items-center w-16 text-7xl font-extrabold bg-gray-300 opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed transition-hover h-content'
+        className='hidden fixed top-16 right-0 bottom-0 justify-center items-center w-16 text-7xl font-extrabold bg-gray-300 opacity-75 hover:opacity-100 disabled:opacity-20 disabled:cursor-not-allowed sm:flex transition-hover h-content'
         disabled={routeParams.no === '898'}
         onClick={() => { navigate(`/pokemon/${parseInt(routeParams.no!) + 1}`, { replace: true }) }}
       >

@@ -13,7 +13,7 @@ const PokemonDescription = ({
   pokemon, strength, weakness, loading
 }: props) => {
   return (
-    <div className='col-span-2'>
+    <div className='col-span-2 mt-4 sm:mt-0'>
       <div className='flex gap-4 items-center'>
         <h3>Type</h3>
         {loading
