@@ -17,7 +17,6 @@ const PokemonDetail = () => {
     if (parseInt(routeParams!.no!) > 898) {
       navigate('/pokemon/898', { replace: true })
     }
-    console.log(Number.isInteger(routeParams.no))
   }, [navigate, routeParams])
 
   const [loading, setLoading] = useState(false)
