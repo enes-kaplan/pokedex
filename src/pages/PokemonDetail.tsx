@@ -10,6 +10,16 @@ const PokemonDetail = () => {
   const routeParams = useParams()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    if (isNaN(parseInt(routeParams!.no!))) {
+      navigate('/pokemon/1', { replace: true })
+    }
+    if (parseInt(routeParams!.no!) > 898) {
+      navigate('/pokemon/898', { replace: true })
+    }
+    console.log(Number.isInteger(routeParams.no))
+  }, [navigate, routeParams])
+
   const [loading, setLoading] = useState(false)
   const [pokemon, setPokemon] = useState<Pokemon>()
   const [strength, setStrengths] = useState<TypeRelation[]>()
