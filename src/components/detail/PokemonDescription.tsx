@@ -77,7 +77,7 @@ const PokemonDescription = ({
       </div>
       <div className='mt-4'>
         <h3>Strengths</h3>
-        <div className='flex gap-4 items-center mt-1'>
+        <div className='flex overflow-x-auto gap-4 items-center pr-3 pb-3 mt-1 customScrollbar'>
           {loading
             ? (<>
               <LoaderLine width='95px' height='32px' />
@@ -98,7 +98,7 @@ const PokemonDescription = ({
       </div>
       <div className='mt-4'>
         <h3>Weaknesses</h3>
-        <div className='flex gap-4 items-center mt-1'>
+        <div className='flex overflow-x-auto gap-4 items-center pr-3 pb-3 mt-1 customScrollbar'>
           {loading
             ? (<>
               <LoaderLine width='95px' height='32px' />
