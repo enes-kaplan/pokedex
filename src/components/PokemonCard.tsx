@@ -36,9 +36,9 @@ const PokemonCard = ({ url }: props) => {
         alt={`Pokemon ${pokemon?.name}`}
         className="w-40 h-40"
       />
-      <div className='absolute top-2 right-2 text-lg font-medium leading-tight text-gray-600'>
+      <h3 className='absolute top-2 right-2'>
         #{pokemon?.no ?? '?'}
-      </div>
+      </h3>
       <h2>
         {pokemon?.name ?? 'Loading...'}
       </h2>
@@ -47,10 +47,8 @@ const PokemonCard = ({ url }: props) => {
 
   const cardBack = (
     <Link to={`/pokemon/${pokemon?.no}`} className='bg-white shadow-lg flip-card-back'>
-      <img src='/pokedex.png' alt='Pokedex for details' className='' />
-      <span className='text-2xl font-bold text-gray-600'>
-        Go to details
-      </span>
+      <img src='/pokedex.png' alt='Pokedex for details' className='h-40' />
+      <h2>Go to details</h2>
     </Link>
   )
 
