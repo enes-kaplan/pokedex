@@ -5,6 +5,7 @@ import { parsePokemon } from '../functions/common'
 
 
 const PokemonGuess = () => {
+  const [loading, setLoading] = useState(true)
   const [showResults, setShowResults] = useState(false)
   const [correctGuess, setCorrectGuess] = useState(false)
   const [pokemon, setPokemon] = useState<Pokemon>()
@@ -15,6 +16,7 @@ const PokemonGuess = () => {
   const getRandomPokeNoFunc = () => Math.floor(Math.random() * max)
 
   const fetchDataFunc = async() => {
+    setLoading(true)
     const pokeNo = getRandomPokeNoFunc()
     const [data, error] = await axiosHandler<any>(`pokemon/${pokeNo}`, 'GET')
     if (!error) {
@@ -22,6 +24,10 @@ const PokemonGuess = () => {
       setShowResults(false)
       setPokemon(parsedPokemon)
     }
+
+    setTimeout(() => {
+      setLoading(false)
+    }, 250)
   }
 
   useEffect(() => {
@@ -33,6 +39,10 @@ const PokemonGuess = () => {
         setShowResults(false)
         setPokemon(parsedPokemon)
       }
+
+      setTimeout(() => {
+        setLoading(false)
+      }, 250)
     }
     initialFetch()
   }, [])
@@ -70,9 +80,14 @@ const PokemonGuess = () => {
     <div className='flex flex-col gap-8 justify-center px-8 mx-auto mt-8 max-w-7xl'>
       <div className='flex gap-8 justify-center px-8 mx-auto'>
         <div className='flex flex-col gap-4 items-center'>
-          <img src={pokemon?.image} alt={'Who\'s this pokemon?'} className={`w-60 h-60 transition-default ${!showResults && 'hidden-pokemon'}`} />
-          {showResults && <h2 className={correctGuess ? 'text-emerald-600' : 'text-red-600'}>{pokemon?.name}</h2>}
-          {!showResults && <h2>&nbsp;</h2>}
+          {loading && <img src='/loader.gif' alt='Loader' className='w-60 h-60' />}
+          {pokemon && !loading
+            && <img src={pokemon?.image} alt={'Who\'s this pokemon?'} className={`w-60 h-60 transition-default ${!showResults && 'hidden-pokemon'}`} />
+          }
+          {showResults
+            ? <h2 className={correctGuess ? 'text-emerald-600' : 'text-red-600'}>{pokemon?.name}</h2>
+            : <h2>&nbsp;</h2>
+          }
         </div>
         <div className='flex flex-col gap-8'>
           <h2>Who's that Pokemon?</h2>
