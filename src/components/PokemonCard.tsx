@@ -46,7 +46,7 @@ const PokemonCard = ({ url }: props) => {
   )
 
   const cardBack = (
-    <Link to={`/pokemon/${pokemon?.no}`} className='bg-red-200 flip-card-back'>
+    <Link to={`/pokemon/${pokemon?.no}`} className='bg-white shadow-lg flip-card-back'>
       <img src='/pokedex.png' alt='Pokedex for details' className='' />
       <span className='text-2xl font-bold text-gray-600'>
         Go to details
