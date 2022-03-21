@@ -55,7 +55,7 @@ const PokemonGuess = () => {
     } else if (guess.trim().length === 0) {
       setError(true)
     } else {
-      setCorrectGuess(guess === pokemon?.name)
+      setCorrectGuess(guess.toLowerCase() === pokemon?.name.toLowerCase())
       setShowResults(true)
     }
   }
@@ -79,7 +79,7 @@ const PokemonGuess = () => {
   return (
     <div className='flex flex-col gap-8 justify-center px-8 mx-auto mt-8 max-w-7xl'>
       <div className='flex gap-8 justify-center px-8 mx-auto'>
-        <div className='flex flex-col gap-4 items-center'>
+        <div className='flex flex-col items-center'>
           {loading && <img src='/loader.gif' alt='Loader' className='w-60 h-60' />}
           {pokemon && !loading
             && <img src={pokemon?.image} alt={'Who\'s this pokemon?'} className={`w-60 h-60 transition-default ${!showResults && 'hidden-pokemon'}`} />
@@ -95,7 +95,7 @@ const PokemonGuess = () => {
             value={guess}
             type='text'
             className={`py-2 px-4 border border-gray-500 rounded outline-none ${error ? 'border-red-600' : ''}`}
-            placeholder='Enter Pokemon name'
+            placeholder='*case insensitive*'
             onChange={(e) => setGuess(e.target.value)}
             onKeyPress={(e) => { if (e.key === 'Enter') { next() }
             }}
