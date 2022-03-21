@@ -32,8 +32,11 @@ const PokemonGuess = () => {
 
   useEffect(() => {
     const initialFetch = async() => {
-      const pokeNo = Math.floor(Math.random() * 898)
+      setLoading(true)
+
+      const pokeNo = Math.floor(Math.random() * max)
       const [data, error] = await axiosHandler<any>(`pokemon/${pokeNo}`, 'GET')
+
       if (!error) {
         const parsedPokemon = parsePokemon(data)
         setShowResults(false)
@@ -45,7 +48,7 @@ const PokemonGuess = () => {
       }, 250)
     }
     initialFetch()
-  }, [])
+  }, [max])
 
   const reroll = () => { fetchDataFunc() }
   const next = () => {
@@ -69,11 +72,10 @@ const PokemonGuess = () => {
     return 'Try again!'
   }
 
-  const oldSchool = () => {
-    setMax(151)
+  const oldSchool = async() => {
     setCorrectGuess(false)
     setShowResults(false)
-    reroll()
+    setMax(151)
   }
 
   return (
@@ -82,9 +84,13 @@ const PokemonGuess = () => {
         <div className='flex flex-col items-center'>
           {loading && <img src='/loader.gif' alt='Loader' className='w-60 h-60' />}
           {pokemon && !loading
-            && <img src={pokemon?.image} alt={'Who\'s this pokemon?'} className={`w-60 h-60 pointer-events-none select-none transition-default ${!showResults && 'hidden-pokemon'}`} />
+            && <img
+              src={pokemon?.image}
+              alt={'Who\'s this pokemon?'}
+              className={`w-60 h-60 pointer-events-none select-none transition-default ${!showResults && 'hidden-pokemon'}`}
+            />
           }
-          {showResults
+          {!loading && showResults
             ? <h2 className={correctGuess ? 'text-emerald-600' : 'text-red-600'}>{pokemon?.name}</h2>
             : <h2>&nbsp;</h2>
           }
@@ -112,7 +118,7 @@ const PokemonGuess = () => {
         className='py-2 px-4 text-lg font-medium text-gray-600 bg-gray-200 hover:bg-gray-300 rounded transition-hover'
         onClick={oldSchool}
       >
-          Use only first gen!
+        Use only first gen!
       </button>
     </div>
   )
