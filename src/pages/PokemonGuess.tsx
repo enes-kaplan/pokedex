@@ -79,8 +79,8 @@ const PokemonGuess = () => {
   }
 
   return (
-    <div className='flex flex-col gap-8 justify-center px-8 mx-auto mt-8 max-w-7xl'>
-      <div className='flex gap-8 justify-center px-8 mx-auto'>
+    <div className='flex overflow-y-auto flex-col gap-8 px-8 pb-16 mx-auto mt-8 max-w-7xl sm:pb-0 h-content'>
+      <div className='flex flex-col gap-8 justify-center px-8 mx-auto sm:flex-row'>
         <div className='flex flex-col items-center'>
           {loading && <img src='/loader.gif' alt='Loader' className='w-60 h-60' />}
           {pokemon && !loading
@@ -118,7 +118,7 @@ const PokemonGuess = () => {
         className='py-2 px-4 text-lg font-medium text-gray-600 bg-gray-200 hover:bg-gray-300 rounded transition-hover'
         onClick={oldSchool}
       >
-        Use only first gen!
+       Use only first gen!
       </button>
     </div>
   )
